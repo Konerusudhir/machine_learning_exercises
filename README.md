@@ -1,2 +1,5 @@
-# kaggle_datasets
-Kaggle competition datasets
+# Exercices
+- Deep learning Courses
+- Kaggle competition Notebooks
+- tensorflow courses
+- GCP courses
