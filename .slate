@@ -1,0 +1,116 @@
+# This is the default .slate file.
+# If no ~/.slate file exists this is the file that will be used.
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Monitor Aliases
+alias mon-left    0
+alias mon-center  1
+alias mon-right   2
+
+alias browser 'Google Chrome'
+alias code 'Code'
+alias terminal 'iTerm2'
+alias texteditor 'Sublime Text'
+alias slack 'Slack'
+alias password_manager '1Password'
+alias postman 'Postman'
+alias sql_pro 'Sequel Pro'
+alias vpn 'OpenVPN Connect'
+alias messages 'Messages'
+alias warp 'Warp'
+alias docker 'Docker Desktop'
+alias music 'Music'
+
+# Concrete positions
+alias mon-left-full       move screenOriginX;screenOriginY screenSizeX;screenSizeY                         ${mon-left} 
+alias mon-left-top        move screenOriginX;screenOriginY screenSizeX;screenSizeY/2                       ${mon-left}
+alias mon-left-bottom     move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2         ${mon-left}
+
+alias mon-center-full     move screenOriginX;screenOriginY screenSizeX;screenSizeY                         ${mon-center}
+alias mon-center-left     move screenOriginX;screenOriginY screenSizeX/2;screenSizeY                       ${mon-center}
+alias mon-center-right    move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-center}
+
+
+alias mon-right-full      move screenOriginX;screenOriginY screenSizeX;screenSizeY                         ${mon-right}
+alias mon-right-top       move screenOriginX;screenOriginY screenSizeX;screenSizeY/2                       ${mon-right}
+alias mon-right-bottom    move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2         ${mon-right}
+
+# Relative positions
+alias full-screen         move screenOriginX;screenOriginY screenSizeX;screenSizeY 
+
+ 
+# 3 Monitor layout
+layout work_layout  ${slack}                        ${mon-left-top}
+layout work_layout  ${terminal}:MAIN_FIRST          ${mon-left-bottom}
+layout work_layout  ${texteditor}:REPEAT            ${mon-left-bottom}
+layout work_layout  ${warp}:REPEAT                  ${mon-left-bottom}
+
+
+layout work_layout  ${code}:REPEAT                  ${mon-center-full}
+
+
+layout work_layout  ${browser}:REPEAT               ${mon-right-top}
+layout work_layout  ${password_manager}:MAIN_FIRST  ${mon-right-top}
+layout work_layout  ${postman}:REPEAT               ${mon-right-bottom}
+layout work_layout  ${sql_pro}:REPEAT               ${mon-right-bottom}
+layout work_layout  ${vpn}:MAIN_FIRST               ${mon-right-bottom}
+layout work_layout  ${messages}:MAIN_FIRST          ${mon-right-bottom}
+layout work_layout  ${docker}:MAIN_FIRST            ${mon-right-bottom}
+layout work_layout  ${music}:MAIN_FIRST             ${mon-right-bottom}
+
+# Default Layouts
+default work_layout resolutions:1080x11920;2560x1440;1080x11920
+
+# Window and layout Short cuts
+bind w:ctrl;cmd layout work_layout
+bind t:ctrl;cmd focus  ${terminal}
+bind b:ctrl;cmd focus  ${browser}
+bind c:ctrl;cmd focus  ${code}
+bind s:ctrl;cmd focus  ${slack}
+bind e:ctrl;cmd focus  ${texteditor}
+
+# Resize Bindings
+bind right:alt       resize +10% +0
+bind left:alt        resize -10% +0
+bind up:alt          resize +0   -10%
+bind down:alt        resize +0   +10%
+bind right:ctrl;alt  resize -10% +0 bottom-right
+bind left:ctrl;alt   resize +10% +0 bottom-right
+bind up:ctrl;alt     resize +0   +10% bottom-right
+bind down:ctrl;alt   resize +0   -10% bottom-right
+bind f:ctrl;cmd      ${full-screen} 
+
+# Push Bindings
+bind right:ctrl;cmd  push right bar-resize:screenSizeX/2
+bind left:ctrl;cmd   push left  bar-resize:screenSizeX/2
+bind up:ctrl;cmd     push up    bar-resize:screenSizeY/2
+bind down:ctrl;cmd   push down  bar-resize:screenSizeY/2
+
+# Nudge Bindings
+bind right:shift;alt nudge +10% +0
+bind left:shift;alt  nudge -10% +0
+bind up:shift;alt    nudge +0   -10%
+bind down:shift;alt  nudge +0   +10%
+
+# Throw Bindings
+bind 1:ctrl;alt         throw 0 resize
+bind 2:ctrl;alt         throw 1 resize
+bind 3:ctrl;alt         throw 2 resize
+bind right:ctrl;alt;cmd throw right resize
+bind left:ctrl;alt;cmd  throw left  resize
+bind up:ctrl;alt;cmd    throw up    resize
+bind down:ctrl;alt;cmd  throw down  resize
+
+# Focus Bindings
+bind right:shift;cmd    focus right
+bind left:shift;cmd     focus left
+bind up:shift;cmd       focus up
+bind down:shift;cmd     focus down
+bind up:shift;cmd;alt   focus behind
+bind down:shift;cmd;alt focus behind
+
+# Window Hints
+bind esc:cmd hint
