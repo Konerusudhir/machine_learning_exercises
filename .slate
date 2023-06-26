@@ -23,6 +23,7 @@ alias messages 'Messages'
 alias warp 'Warp'
 alias docker 'Docker Desktop'
 alias music 'Music'
+alias finder 'Finder'
 
 # Concrete positions
 alias mon-left-full       move screenOriginX;screenOriginY screenSizeX;screenSizeY                         ${mon-left} 
@@ -47,6 +48,7 @@ layout work_layout  ${slack}                        ${mon-left-top}
 layout work_layout  ${terminal}:MAIN_FIRST          ${mon-left-bottom}
 layout work_layout  ${texteditor}:REPEAT            ${mon-left-bottom}
 layout work_layout  ${warp}:REPEAT                  ${mon-left-bottom}
+layout work_layout  ${finder}:REPEAT                ${mon-left-bottom}
 
 
 layout work_layout  ${code}:REPEAT                  ${mon-center-full}
